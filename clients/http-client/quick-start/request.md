@@ -17,13 +17,13 @@ Most of the simple requests are made with pattern
 val response = client.'http-method'<'ResponseType'>("url-string")
 ```
 
-or even simpler form(due to kotlin generic type inference):
+or an even simpler form (due to Kotlin's generic type inference):
 
 ```
 val response: ResponseType = client.'http-method'("url-string")
 ```
 
-For example to perform a `GET` request fully reading a `String`:
+For example to perform a `GET` request to fully read a `String`:
 
 ```kotlin
 val htmlContent = client.get<String>("https://en.wikipedia.org/wiki/Main_Page")
@@ -31,7 +31,7 @@ val htmlContent = client.get<String>("https://en.wikipedia.org/wiki/Main_Page")
 val content: String = client.get("https://en.wikipedia.org/wiki/Main_Page")
 ```
 
-And in the case you are interested in the raw bits, you can read a `ByteArray`:
+And if you are interested in the raw bits, you can read a `ByteArray`:
 
 ```kotlin
 val channel: ByteArray = client.get("https://en.wikipedia.org/wiki/Main_Page")
@@ -54,11 +54,11 @@ data class User(val id: Int)
 val response: User = client.get("https://myapi.com/user?id=1")
 ```
 
-Please note that some of response types are `Closeable` and can hold resources.
+Please note that some response types are `Closeable` and can hold resources.
 
 ## Customizing requests
 
-We cannot live only on *get* requests, Ktor allows you to build complex requests with any of the HTTP verbs, with the flexibility to process responses in many ways.
+We cannot live only on *get* requests. Ktor allows you to build complex requests with any of the HTTP verbs, with the flexibility to process responses in many ways.
 
 ### Default http methods
 
@@ -122,7 +122,7 @@ val call = client.request<String> {
 {: #submit-form }
 
 There are a couple of convenience extension methods for submitting form information.
-The detailed refrence is listed [here](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.client.request.forms/).
+The detailed reference is [here](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.client.request.forms/).
 
 The `submitForm` method:
 
@@ -134,7 +134,8 @@ client.submitForm(
 )
 ```
 
-It allows requesting with the `Parameters` encoded in the query string(`GET` by default) or requesting with the `Parameters` encoded as multipart(`POST` by default) depending on the `encodeInQuery` parameter.
+This allows requesting with the `Parameters` encoded in the query string(`GET` by default),
+or requesting with the `Parameters` encoded as multipart (`POST` by default) depending on the `encodeInQuery` parameter.
 
 The `submitFormWithBinaryData` method:
 
@@ -145,7 +146,7 @@ client.submitFormWithBinaryData(
 ): T
 ```
 
-It allows to generate a multipart POST request from a list of `PartData`.
+This allows you to generate a multipart POST request from a list of `PartData`.
 `PartData` can be `PartData.FormItem`, `PartData.BinaryItem` or `PartData.FileItem`.
 
 To build a list of `PartData`, you can use the `formData` builder:
@@ -191,7 +192,7 @@ headers { // this: HeadersBuilder
 }
 ```
 
-Complete `HeadersBuilder` API is listed [here](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.http/-headers-builder/).
+The complete `HeadersBuilder` API is listed [here](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.http/-headers-builder/).
 
 ## Specifying a body for requests
 

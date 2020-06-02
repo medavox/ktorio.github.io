@@ -10,15 +10,22 @@ ktor_version_review: 1.3.0
 
 ## Adding an engine dependency
 
-The first thing you need to do before using the client is to add a client engine dependency. Client engine is a request executor that performs requests from ktor API. There are many client engines for each platform available out of the box: [`Apache`](/clients/http-client/engines.html#apache),
-[`OkHttp`](/clients/http-client/engines.html#okhttp),
-[`Android`](/clients/http-client/engines.html#android),
-[`Ios`](/clients/http-client/engines.html#ios),
-[`Js`](/clients/http-client/engines.html#js-javascript),
-[`Jetty`](/clients/http-client/engines.html#jetty),
-[`CIO`](/clients/http-client/engines.html#cio) and [`Mock`](/clients/http-client/testing.html). You can read more in the [Multiplatform](/clients/http-client/multiplatform.html) section.
+The first thing you need to do before using the client is to add a client engine dependency. 
+A Client engine is a request executor that performs requests from the Ktor API. 
+There are many client engines for each platform available out of the box: 
 
-For example you can add `CIO` engine dependency in `build.gradle` like this:
+* [`Android`](/clients/http-client/engines.html#android),
+* [`Apache`](/clients/http-client/engines.html#apache),
+* [`CIO`](/clients/http-client/engines.html#cio) and
+* [`Ios`](/clients/http-client/engines.html#ios),
+* [`Jetty`](/clients/http-client/engines.html#jetty),
+* [`Js`](/clients/http-client/engines.html#js-javascript),
+* [`Mock`](/clients/http-client/testing.html). 
+* [`OkHttp`](/clients/http-client/engines.html#okhttp),
+
+You can read more in the [Multiplatform](/clients/http-client/multiplatform.html) section.
+
+For example you can add the `CIO` engine dependency in `build.gradle` like this:
 
 ```kotlin
 dependencies {
@@ -28,13 +35,14 @@ dependencies {
 
 ## Creating client
 
-Next you can create client as here:
+Next you can create a client like so:
 
 ```kotlin
 val client = HttpClient(CIO)
 ```
 
-where `CIO` is engine class here. If you confused which engine class you should use consider using `CIO`.
+where `CIO` is the engine class here. 
+If you are confused about which engine class to use, consider using `CIO`.
 
 If you're using multiplatform, you can omit the engine:
 
@@ -42,9 +50,10 @@ If you're using multiplatform, you can omit the engine:
 val client = HttpClient()
 ```
 
-Ktor will choose an engine among the ones that are available from the included artifacts using a `ServiceLoader` on the JVM, or similar approach in the other platforms. If there are multiple engines in the dependencies Ktor chooses first in alphabetical order of engine name.
+Ktor will choose an engine among the ones that are available from the included artifacts using a `ServiceLoader` on the JVM,
+or a similar approach in the other platforms. If there are multiple engines in the dependencies, Ktor chooses by alphabetical order of engine name.
 
-It's safe to create multiple instance of client or use the same client for multiple requests.
+It's safe to create multiple client instances, or use the same client for multiple requests.
 
 ## Releasing resources
 
@@ -54,7 +63,8 @@ Ktor client is holding resources: prepared threads, coroutines and connections. 
 client.close()
 ```
 
-If you want to use a client to make only one request consider `use`-ing it. The client will be automatically closed once the passed block has been executed:
+If you want to use a client to make only one request consider `use`-ing it.
+The client will be automatically closed once the passed block has been executed:
 
 ```kotlin
 val status = HttpClient().use { client ->
@@ -62,7 +72,9 @@ val status = HttpClient().use { client ->
 }
 ```
 
-The method `close` signals to stop executing new requests. It wouldn't block and allows all current requests to finish successfully and release resources. You can also wait for closing with the `join` method or halt any activity using the `cancel` method. For example:
+The `close` method signals the client to stop executing new requests.
+It won't block, and allows all current requests to finish successfully and release resources.
+You can also wait for the client to close with the `join` method, or halt any activity using the `cancel` method. For example:
 
 ```kotlin
 try {
@@ -77,11 +89,13 @@ try {
 }
 ```
 
-Ktor HttpClient follows `CoroutineScope` lifecycle. Check out [Coroutines guide](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/) to learn more.
+The Ktor HttpClient follows the `CoroutineScope` lifecycle. 
+Check out the [Coroutines guide](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/) to learn more.
 
 ## Client configuration
 
-To configure the client you can pass additional functional parameter to client constructor. The client configured with [HttpClientEngineConfig](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.client.engine/-http-client-engine-config/index.html).
+To configure the client you can pass additional functional parameters to the client's constructor.
+The client is configured with [HttpClientEngineConfig](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.client.engine/-http-client-engine-config/index.html).
 
 For example you can limit `threadCount` or setup [proxy](/clients/http-client/features/proxy.html):
 

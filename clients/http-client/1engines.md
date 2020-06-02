@@ -26,15 +26,15 @@ val client = HttpClient()
 In the case of the JVM, the default engine is resolved with a ServiceLoader, getting the first one available sorted in alphabetical order.
 Thus depends on the artifacts you have included.
 
-For native, the engine detected during static linkage. Please provide one of the native engines in artifacts.
+For native, the engine is detected during static linkage. Please provide one of the native engines in the artifacts.
 
-For js, it uses the predefined one.
+For JS, it uses the predefined one.
 
 ## Configuring engines
 
 {: #configuring}
 
-Ktor HttpClient lets you configure the parameters of each engine by calling:
+The Ktor HttpClient lets you configure the parameters of each engine by calling:
 
 ```kotlin
 HttpClient(MyHttpEngine) {
@@ -47,7 +47,7 @@ HttpClient(MyHttpEngine) {
 Every engine config has some common properties that can be set:
 
 * The `threadsCount` property is a recommendation to use by an engine. It can be ignored if an engine doesn't require such amount of threads.
-* The `pipelining` is experimental flag to enable [HTTP pipelining](https://en.wikipedia.org/wiki/HTTP_pipelining).
+* The `pipelining` is an experimental flag to enable [HTTP pipelining](https://en.wikipedia.org/wiki/HTTP_pipelining).
 
 ```kotlin
 val client = HttpClient(MyHttpEngine) {
@@ -64,7 +64,9 @@ val client = HttpClient(MyHttpEngine) {
 
 {: #apache}
 
-Apache is the most configurable HTTP client about right now. It supports HTTP/1.1 and HTTP/2. It is the only one that supports following redirects and allows you to configure timeouts, proxies among other things it is supported by `org.apache.httpcomponents:httpasyncclient`.
+Apache is the most configurable HTTP client around right now. It supports HTTP/1.1 and HTTP/2. 
+It is the only one that supports following redirects, and allows you to configure timeouts and proxies. 
+Among other things it is supported by `org.apache.httpcomponents:httpasyncclient`.
 
 A sample configuration would look like:
 
@@ -260,8 +262,8 @@ val client = HttpClient(OkHttp) {
 
 {: #android }
 
-The Android engine doesn't have additional dependencies and uses a ThreadPool with a normal HttpURLConnection,
-to perform the requests. And can be configured like this:
+The Android engine doesn't have additional dependencies and uses a ThreadPool with a normal HttpURLConnection
+to perform the requests. It can be configured like this:
 
 ```kotlin
 val client = HttpClient(Android) {
@@ -283,7 +285,7 @@ val client = HttpClient(Android) {
 
 {: #ios }
 
-The iOS engine uses the asynchronous `NSURLSession` internally. And have no additional configuration.
+The iOS engine uses the asynchronous `NSURLSession` internally, and has no additional configuration.
 
 ```kotlin
 val client = HttpClient(Ios) {
@@ -303,7 +305,7 @@ val client = HttpClient(Ios) {
 
 The `Js` engine, uses the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API internally(and `node-fetch` for node.js runtime).
 
-Js engine has no custom configuration.
+The JS engine has no additional configuration.
 
 ```kotlin
 val client = HttpClient(Js) {
@@ -324,7 +326,8 @@ There is an engine based on Curl:
 val client = HttpClient(Curl)
 ```
 
-Supported platforms: linux_x64, macos_x64, mingw_x64. Please note that to use the engine you must have the installed curl library at least version 7.63
+Supported platforms: linux_x64, macos_x64, mingw_x64. 
+Please note that to use this engine you must have at least version 7.63 of the [Curl library](https://github.com/curl/curl) installed.
 
 {% include artifact.html kind="engine" class="io.ktor.client.engine.curl.Curl" artifact="io.ktor:ktor-client-curl:$ktor_version" %}
 
