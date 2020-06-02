@@ -54,12 +54,12 @@ dependencies {
 }
 ```
 
-In the case of iOS, we usually create a `.framework`, and the application project is a regular XCode project written either in Swift or Objective-C that includes that framework. 
+On iOS we usually create a `.framework`, and the application project is a regular XCode project written either in Swift or Objective-C that includes that framework. 
 So you first have to build the framework using the Gradle tasks exposed by Kotlin/Native, and then open the XCode project.
 
 ## Javascript
 
-In the case of a browser or node-js application, you have to use [Kotlin/Js](https://kotlinlang.org/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html).
+For a browser or node-js application, you have to use [Kotlin/Js](https://kotlinlang.org/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html).
 
 ```kotlin
 dependencies {
