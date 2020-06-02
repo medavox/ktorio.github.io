@@ -57,7 +57,8 @@ It's safe to create multiple client instances, or use the same client for multip
 
 ## Releasing resources
 
-Ktor client is holding resources: prepared threads, coroutines and connections. After you finish working with the client, you may wish to release it by calling `close`:
+The Ktor client instance holds resources: prepared threads, coroutines and connections.
+After you finish working with it, you should release those resources by calling `close`:
 
 ```kotlin
 client.close()
@@ -105,7 +106,7 @@ val client = HttpClient(CIO) {
 }
 ```
 
-You also can configure engine using the `engine` method in block:
+You can also configure the engine using the `engine` method, like in this block:
 
 ```kotlin
 val client = HttpClient(CIO) {
@@ -115,6 +116,6 @@ val client = HttpClient(CIO) {
 }
 ```
 
-See [Engines](/clients/http-client/engines.html) section for additional details.
+See the [Engines](/clients/http-client/engines.html) section for additional details.
 
 Proceed to [Preparing the request](/clients/http-client/quick-start/requests.html).

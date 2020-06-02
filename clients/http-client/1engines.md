@@ -6,7 +6,8 @@ caption: HTTP Client Engines
 ktor_version_review: 1.2.0
 ---
 
-Ktor HTTP Client has a common interface but allows to specify an engine that processes the network request. Different engines have different configurations, dependencies and supporting features.
+The Ktor HTTP Client has a common interface, but allows you to specify the engine that processes the network request.
+Different engines have different configurations, dependencies and supporting features.
 
 **Table of contents:**
 
@@ -17,14 +18,14 @@ Ktor HTTP Client has a common interface but allows to specify an engine that pro
 
 {: #default}
 
-By calling to the `HttpClient` method without specifying an engine, it uses a default engine.
+By calling the `HttpClient` method without specifying an engine it uses a default engine, which is platform-specific.
 
 ```kotlin
 val client = HttpClient()
 ```
 
-In the case of the JVM, the default engine is resolved with a ServiceLoader, getting the first one available sorted in alphabetical order.
-Thus depends on the artifacts you have included.
+On the JVM, the default engine is resolved with a ServiceLoader, using the first one by alphabetical order of name.
+So which engine is loaded depends on the artifacts you have included.
 
 For native, the engine is detected during static linkage. Please provide one of the native engines in the artifacts.
 

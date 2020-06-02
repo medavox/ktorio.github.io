@@ -11,7 +11,7 @@ ktor_version_review: 1.3.0
 ## Making request
 
 After client configuration we're ready to perform our first request.
-Most of the simple requests are made with pattern
+Most simple requests are made according to this pattern:
 
 ```
 val response = client.'http-method'<'ResponseType'>("url-string")
@@ -43,9 +43,11 @@ Or get full [HttpResponse](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.c
 val response: HttpResponse = client.get("https://en.wikipedia.org/wiki/Main_Page")
 ```
 
-The [HttpResponse](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.client.statement/-http-response/index.html) is downloaded in memory by default. To learn how to download response partially or work with a stream data consult with the [Streaming](/clients/http-client/quick-start/streaming.html) section.
+The [HttpResponse](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.client.statement/-http-response/index.html) is downloaded into memory by default. 
+To learn how to download a response partially or work with stream data,
+consult the [Streaming](/clients/http-client/quick-start/streaming.html) section.
 
-And even your data class using [Json](/clients/http-client/features/json-feature.html) feature:
+You can even use your own data class, with the [Json](/clients/http-client/features/json-feature.html) feature:
 
 ```kotlin
 @Serializable
@@ -71,8 +73,10 @@ with the most common HTTP verbs: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `HEAD`
 val text = client.post<String>("http://127.0.0.1:8080/")
 ```
 
-When calling request methods, you can provide a lambda to build the request
-parameters like the URL, the HTTP method(verb), the body, or the headers:
+When calling request methods you can provide a lambda to build the request parameters — such as the URL,
+the HTTP method (verb), the body, or the headers:
+
+<!-- TODO: more comprehensive example of this? -->
 
 ```kotlin
 val text = client.post<String>("http://127.0.0.1:8080/") {
@@ -107,7 +111,7 @@ You can check the standard available [HttpClient build extension methods](https:
 ### Customize method
 
 In addition to call, there is a `request` method for performing a typed request,
-[receiving a specific type](/clients/http-client/quick-start/responses.html#receive) like String, HttpResponse, or an arbitrary class.
+[receiving a specific type](/clients/http-client/quick-start/responses.html#receive) like `String`, `HttpResponse`, or an arbitrary class.
 You have to specify the URL and the method when building the request.
 
 ```kotlin
@@ -169,7 +173,7 @@ val data: List<PartData> = formData {
 
 When building requests with `HttpRequestBuilder`, you can set custom headers.
 There is a final property `val headers: HeadersBuilder` that inherits from `StringValuesBuilder`.
-You can add or remove headers using it, or with the `header` convenience methods.
+You can add or remove headers using this, or with the `header` convenience methods.
 
 ```kotlin
 // this : HttpMessageBuilder

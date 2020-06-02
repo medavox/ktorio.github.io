@@ -44,8 +44,8 @@ You can then use Android Studio, or Gradle to build your project.
 
 ## iOS
 
-In the case of iOS, you have to use [Kotlin/Native](https://github.com/JetBrains/kotlin-native), and analogously
-to android, you have to put this artifact as part of the `dependencies` block.
+On iOS, you have to use [Kotlin/Native](https://github.com/JetBrains/kotlin-native), and analogously
+to Android, you have to include this artifact as part of the `dependencies` block.
 
 ```kotlin
 dependencies {
@@ -70,7 +70,7 @@ dependencies {
 
 ## Posix compatible desktops: MacOS, Linux, Windows
 
-As an alternative to JVM compatible engines, you also could use ktor client with [Kotlin/Native](https://github.com/JetBrains/kotlin-native)using `curl` backend.
+As an alternative to JVM-compatible engines, you also could use a Ktor client with the [Kotlin/Native](https://github.com/JetBrains/kotlin-native)using the `curl` backend.
 
 ```kotlin
 dependencies {
@@ -89,7 +89,7 @@ Android and iOS applications directly from Gradle.
 ### Android tasks
 
 * `:client-mpp-android:emulatorList` - lists all the available emulators
-* `:client-mpp-android:emulatorStart` - starts the emulator (this would block Gradle for now, so better to do in a separate terminal)
+* `:client-mpp-android:emulatorStart` - starts the emulator (this blocks Gradle for now, so it's better to do this in a separate terminal)
 * `:client-mpp-android:emulatorInstall` - install the application inside the emulator
 * `:client-mpp-android:emulatorRun` - executes the application inside the emulator
 
